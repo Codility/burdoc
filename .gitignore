@@ -1,0 +1,7 @@
+.ducc
+node_modules
+
+# test stuff
+icons
+pattern-library
+root

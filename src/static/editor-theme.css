@@ -1,0 +1,15 @@
+/**
+ * Based on the GitHub theme
+ */
+
+.cm-s-default .cm-atom { color: #0086b3; }
+.cm-s-default .cm-attribute { color: #63a35c; }
+.cm-s-default .cm-comment { color: #969896; }
+.cm-s-default .cm-keyword { color: #a71d5d; }
+.cm-s-default .cm-number { color: #0086b3; }
+.cm-s-default .cm-operator { color: #a71d5d; }
+.cm-s-default .cm-property { color: #795da3; }
+.cm-s-default .cm-string { color: #183691; }
+.cm-s-default .cm-tag { color: #0086b3; }
+.cm-s-default .cm-tag.cm-bracket { color: inherit; }
+.cm-s-default .cm-variable { color: #795da3; }
