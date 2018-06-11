@@ -5,7 +5,7 @@ const { relative, resolve } = require('path');
 const update = require('immutability-helper');
 const { get } = require('lodash');
 
-const DuccWebpackPlugin = require('./DuccWebpackPlugin');
+const BurdocWebpackPlugin = require('./BurdocWebpackPlugin');
 
 function addVendorDependencies(entries) {
   if (!entries.hasOwnProperty('main.js')) {
@@ -25,7 +25,7 @@ function addVendorDependencies(entries) {
 }
 
 module.exports = {
-  distDir: relative(__dirname, resolve('.ducc')),
+  distDir: relative(__dirname, resolve('.burdoc')),
 
   webpack(config, { isServer }) {
     const prevEntry = config.entry;
@@ -47,7 +47,7 @@ module.exports = {
       }
     });
 
-    config.plugins.push(new DuccWebpackPlugin());
+    config.plugins.push(new BurdocWebpackPlugin());
 
     return config;
   },

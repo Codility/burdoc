@@ -46,7 +46,7 @@ export default section()
       import MyComponent from 'pattern-library/components/MyComponent';
 
       // And the helpers
-      import { CodeExample, section } from 'ducc';
+      import { CodeExample, section } from 'burdoc';
 
       // Pass the component to the \`section\` function so that it can get some info about props (it's optional)
       export default section(MyComponent)
@@ -94,7 +94,7 @@ export default section()
       The \`iterable\` prop can be either an iterable or a function - the latter will be called to
       obtain the iterable (comes in handy for demoing with generators).
     `,
-    <CodeExample imports="import { Iterator } from 'ducc';">
+    <CodeExample imports="import { Iterator } from 'burdoc';">
       <Iterator iterable={[0, 1, 2]}>{value => <div>Current value: {value}</div>}</Iterator>
       <Iterator iterable={counter} timeout={500}>
         {value => <div>Infinite counter: {value}</div>}
@@ -104,7 +104,7 @@ export default section()
   .example(
     'The RandomNumberGenerator component',
     'Can be used for demoing the behavior of a component when transitioning state between random values in a given range.',
-    <CodeExample imports="import { RandomNumberGenerator } from 'ducc';">
+    <CodeExample imports="import { RandomNumberGenerator } from 'burdoc';">
       <RandomNumberGenerator min={1} max={1.5}>
         {value => <div>Current value: {value}</div>}
       </RandomNumberGenerator>
@@ -113,7 +113,7 @@ export default section()
   .example(
     'The Toggler component',
     'Can be used for demoing the behavior of a component when transitioning state between given values.',
-    <CodeExample imports="import { Toggler } from 'ducc';">
+    <CodeExample imports="import { Toggler } from 'burdoc';">
       <Toggler toggleFoo={[0, 1, 2]}>
         {({ toggleFoo, value }) => <button onClick={toggleFoo}>Foo: {value}</button>}
       </Toggler>
@@ -122,7 +122,7 @@ export default section()
   .example(
     'The Setter component',
     'Can be used for demoing the behavior of a component when transitioning state between given values.',
-    <CodeExample imports="import { Setter } from 'ducc';">
+    <CodeExample imports="import { Setter } from 'burdoc';">
       <Setter setBar="bar">
         {({ setBar, state }) => (
           <div>
@@ -143,7 +143,7 @@ export default section()
       Can be used for demoing a component that has an internal state that won't go to
       the initial state once changed (e.g. a dismissable notification).
     `,
-    <CodeExample imports="import { Resetter, Setter } from 'ducc';">
+    <CodeExample imports="import { Resetter, Setter } from 'burdoc';">
       <Resetter>
         <Iterator iterable={counter} timeout={500}>
           {value => <div>Current value: {value}</div>}

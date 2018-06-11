@@ -10,7 +10,7 @@ module.exports = {
     ['module-resolver', {
       root: __dirname,
       alias: {
-        ducc: './src/core',
+        burdoc: './src/core',
       },
     }],
   ],

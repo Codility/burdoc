@@ -4,7 +4,7 @@ const ChunkNameMapTemplatePlugin = require('./ChunkNameMapTemplatePlugin');
 const patchImportDependencyTemplate = require('./patchImportDependencyTemplate');
 const patchImportParserPlugin = require('./patchImportParserPlugin');
 
-module.exports = class DuccWepbackPlugin {
+module.exports = class BurdocWepbackPlugin {
   apply(compiler) {
     /**
      * Since the export is being patched and Node's require.cache is not being cleared,
