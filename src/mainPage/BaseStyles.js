@@ -13,6 +13,10 @@ export default function BaseStyles() {
       </Head>
 
       <style jsx global>{`
+        *, *:before, *:after {
+          box-sizing: border-box;
+        }
+
         html {
           font-family: Roboto, sans-serif;
           font-size: 16px;
@@ -54,6 +58,10 @@ export default function BaseStyles() {
 
         h1, h2, h3 {
           margin: 1.125em 0 0.875em;
+        }
+
+        iframe {
+          border: none;
         }
 
         li {
