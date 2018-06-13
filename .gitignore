@@ -1,5 +1,6 @@
 .burdoc
 node_modules
+tmp
 
 # test stuff
 icons
