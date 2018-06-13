@@ -4,6 +4,8 @@ const { createReadStream, stat } = require('fs');
 const { join, normalize } = require('path');
 const { PassThrough } = require('stream');
 
+const mime = require('mime-types');
+
 const defaultRoot = join(process.cwd(), 'root');
 
 function isAcceptedError(error) {
@@ -22,7 +24,7 @@ function promiseStat(path) {
   });
 }
 
-module.exports = async function serveRootFile(ctx, next) {
+module.exports = async function serveRootFiles(ctx, next) {
   const destPath = normalize(join(defaultRoot, ctx.path));
   try {
     const stats = await promiseStat(destPath);
@@ -30,6 +32,7 @@ module.exports = async function serveRootFile(ctx, next) {
       await next();
     } else {
       ctx.body = createReadStream(destPath);
+      ctx.set('Content-Type', mime.contentType(destPath) || 'application/octet-stream')
     }
   } catch (error) {
     if (isAcceptedError(error)) {

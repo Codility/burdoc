@@ -29,6 +29,7 @@
     "keycode": "^2.2.0",
     "koa": "^2.5.1",
     "koa-router": "^7.4.0",
+    "mime-types": "^2.1.18",
     "next": "^6.0.3",
     "popper.js": "^1.14.3",
     "prop-types": "^15.6.1",
