@@ -34,7 +34,7 @@ export default function BaseStyles() {
           border-radius: ${borderRadius};
           color: ${red900};
           font-size: 0.875em;
-          padding: 0.15rem 0.4rem;
+          padding: 2px 8px;
         }
 
         h1 {
@@ -57,7 +57,7 @@ export default function BaseStyles() {
         }
 
         li {
-          margin: 0.625rem 0;
+          margin: 16px 0;
         }
       `}</style>
     </Fragment>

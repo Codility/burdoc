@@ -5,7 +5,7 @@ import { Component, Fragment } from 'react';
 
 import { grey50, grey300 } from 'constants/colors';
 
-const menuWidth = '15rem';
+const menuWidth = '240px';
 
 export default class Menu extends Component {
   static propTypes = {
@@ -58,7 +58,7 @@ export default class Menu extends Component {
             height: 100%;
             left: 0;
             overflow-y: auto;
-            padding: 1rem 1rem 3rem;
+            padding: 16px 16px 48px;
             position: fixed;
             top: 0;
             width: ${menuWidth};
@@ -68,10 +68,10 @@ export default class Menu extends Component {
             border: 1px solid ${grey300};
             box-sizing: border-box;
             font-size: 14px;
-            height: 1.5rem;
-            line-height: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding: 0 0.25rem;
+            height: 24px;
+            line-height: 24px;
+            margin-bottom: 24px;
+            padding: 0 4px;
             width: 100%;
           }
 

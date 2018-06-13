@@ -18,10 +18,10 @@ export default function Code({ children, imports, value }) {
           border: 1px solid ${grey300};
           color: ${grey900};
           display: block;
-          font-size: 0.875rem;
-          margin-bottom: 1rem;
+          font-size: 14px;
+          margin-bottom: 16px;
           margin-top: 0;
-          padding: 1rem;
+          padding: 16px;
         }
       `}</style>
     </pre>

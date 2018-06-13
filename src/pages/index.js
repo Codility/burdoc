@@ -46,7 +46,7 @@ export default function Index({ pathname }) {
 
         .container-column {
           flex: 1 1 0px;
-          margin: 4rem 3rem;
+          margin: 64px 48px;
           min-width: 0;
         }
 

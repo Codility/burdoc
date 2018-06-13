@@ -33,7 +33,7 @@ export default function CodeExample({ backgroundColor, children, code, height, i
           border: 1px solid ${grey300};
           margin-bottom: -1px;
           overflow: hidden;
-          padding: 1rem;
+          padding: 16px;
         }
 
         .viewport { position: relative }
