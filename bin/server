@@ -1,9 +1,11 @@
+#!/usr/bin/env node
 'use strict';
 
 process.on('unhandledRejection', reason => {
   console.error(reason.stack);
 });
 
+const { join } = require('path');
 const { parse } = require('url');
 
 const Koa = require('koa');
@@ -17,7 +19,7 @@ const port = process.env.SERVER_PORT || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({
   dev,
-  dir: __dirname,
+  dir: join(__dirname, '../src'),
 });
 const handle = app.getRequestHandler();
 
