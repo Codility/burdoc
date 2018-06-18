@@ -38,7 +38,7 @@ module.exports = {
     config.resolve.alias.__cwd = process.cwd();
 
     config.module.rules.forEach(rule => {
-      if (get(rule, 'use.loader') === 'babel-loader') {
+      if (get(rule, 'use.loader') === 'next-babel-loader') {
         rule.include.push(resolve('.'));
 
         if (get(rule, 'use.options.cacheDirectory')) {

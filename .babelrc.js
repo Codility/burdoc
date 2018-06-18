@@ -2,7 +2,7 @@
 
 module.exports = {
   presets: [
-    require('./src/.babelrc.js'),
+    require('./src/.babelrc'),
   ],
   plugins: [
     ['styled-components', { ssr: true }],

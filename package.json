@@ -30,7 +30,7 @@
     "koa": "^2.5.1",
     "koa-router": "^7.4.0",
     "mime-types": "^2.1.18",
-    "next": "^6.0.3",
+    "next": "^6.0.4-canary.8",
     "popper.js": "^1.14.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",

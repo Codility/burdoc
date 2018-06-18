@@ -1,7 +1,7 @@
 'use strict';
 
 const nextBabel = require('next/babel');
-const handleImportsPlugin = require('next/dist/server/build/babel/plugins/handle-import');
+const handleImportsPlugin = require('next/dist/build/babel/plugins/handle-import');
 
 module.exports = api => {
   api.cache.never();
