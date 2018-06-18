@@ -5,10 +5,10 @@ import Interval from 'core/Interval';
 
 export default class RandomNumberGenerator extends Component {
   static propTypes = {
-    children: PropTypes.func.isRequired,
+    children: PropTypes.any,
     max: PropTypes.number.isRequired,
     min: PropTypes.number.isRequired,
-    timeout: PropTypes.number,
+    timeout: PropTypes.any,
   };
 
   render() {

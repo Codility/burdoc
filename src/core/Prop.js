@@ -1,60 +1,61 @@
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 
+import { lightBlue400, yellow700 } from 'constants/colors';
 import Badge from 'core/Badge';
 import Markdown from 'core/Markdown';
 
-function Default({ value }) {
-  if (!value) {
-    return <span />;
+function Default({ children }) {
+  if (!children) {
+    return null;
   }
 
   return (
-    <span>
+    <Fragment>
       {' '}
-      (default: <code>{value}</code>)
-    </span>
+      (default: <code>{children}</code>)
+    </Fragment>
   );
 }
 
 Default.propTypes = {
-  value: PropTypes.string.isRequired,
+  children: PropTypes.string,
 };
 
-const functionName = /^on[A-Z]/;
-
 export default function Prop({
-  args,
+  args ,
   children,
   description,
   defaultValue,
   isA11y,
+  isFunction,
   isRequired,
   name,
 }) {
   const formattedDescription = description ? <Markdown isInline>{description}</Markdown> : children;
-  const hasArgs = functionName.test(name);
 
   return (
     <li>
       <code>
         {name}
-        {hasArgs && `(${args})`}
+        {isFunction && `(${args})`}
       </code>
-      <Default value={defaultValue} />
+
+      <Default>{defaultValue}</Default>
 
       {isRequired && (
-        <Badge type="warning" isInline>
+        <Badge color={yellow700}>
           required
         </Badge>
       )}
 
       {isA11y && (
-        <Badge type="info" isInline>
+        <Badge color={lightBlue400}>
           a11y
         </Badge>
       )}
 
-      {formattedDescription && <span>: {formattedDescription}</span>}
+      {formattedDescription && <Fragment>: {formattedDescription}</Fragment>}
     </li>
   );
 }
@@ -65,13 +66,7 @@ Prop.propTypes = {
   defaultValue: PropTypes.string,
   description: PropTypes.string,
   isA11y: PropTypes.bool,
+  isFunction: PropTypes.bool,
   isRequired: PropTypes.bool,
   name: PropTypes.string.isRequired,
-};
-
-Prop.defaultProps = {
-  args: '',
-  defaultValue: '',
-  isA11y: false,
-  isRequired: false,
 };

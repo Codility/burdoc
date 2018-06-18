@@ -5,9 +5,9 @@ import Interval from 'core/Interval';
 
 export default class Iterator extends Component {
   static propTypes = {
-    children: PropTypes.func.isRequired,
+    children: PropTypes.any,
     iterable: PropTypes.any.isRequired,
-    timeout: PropTypes.number,
+    timeout: PropTypes.any,
   };
 
   generator = this.iterate();
@@ -32,16 +32,16 @@ export default class Iterator extends Component {
   }
 
   *iterate() {
-    let yielded = true;
+    let yielded;
 
-    while (yielded) {
+    do {
       yielded = false;
 
       for (const value of this.getIterable()) {
         yielded = true;
         yield value;
       }
-    }
+    } while (yielded);
   }
 
   nextValue = () => this.generator.next().value;

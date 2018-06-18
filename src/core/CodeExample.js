@@ -1,5 +1,6 @@
 import { stripIndent } from 'common-tags';
 import PropTypes from 'prop-types';
+import { Fragment } from 'react';
 
 import { grey300 } from 'constants/colors';
 import Code from 'core/Code';
@@ -8,17 +9,15 @@ function normalizeSize(size) {
   return typeof size === 'number' ? `${size}px` : size;
 }
 
-export default function CodeExample({ backgroundColor, children, code, height, imports, width }) {
+export default function CodeExample({ backgroundColor = 'initial', children, code, height = 'auto', imports, width = 'auto' }) {
   if (typeof children === 'string') {
     return (
-      <div>
-        <Code imports={imports}>{stripIndent([children])}</Code>
-      </div>
+      <Code imports={imports}>{stripIndent([children])}</Code>
     );
   }
 
   return (
-    <div>
+    <Fragment>
       <div className="viewport-wrapper">
         <div className="viewport" style={{ height: normalizeSize(height), width: normalizeSize(width) }}>
           {children}
@@ -38,7 +37,7 @@ export default function CodeExample({ backgroundColor, children, code, height, i
 
         .viewport { position: relative }
       `}</style>
-    </div>
+    </Fragment>
   );
 }
 
@@ -46,17 +45,7 @@ CodeExample.propTypes = {
   backgroundColor: PropTypes.string,
   children: PropTypes.node,
   code: PropTypes.string,
-  codeOnly: PropTypes.bool,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   imports: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-};
-
-CodeExample.defaultProps = {
-  backgroundColor: 'initial',
-  code: '',
-  codeOnly: false,
-  height: 'auto',
-  imports: '',
-  width: 'auto',
 };

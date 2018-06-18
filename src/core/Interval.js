@@ -7,6 +7,7 @@ export default class Interval extends Component {
     getData: PropTypes.func.isRequired,
     timeout: PropTypes.number,
   };
+
   static defaultProps = {
     timeout: 2000,
   };

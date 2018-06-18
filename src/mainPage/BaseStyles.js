@@ -57,7 +57,7 @@ export default function BaseStyles() {
         }
 
         h1, h2, h3 {
-          margin: 1.125em 0 0.875em;
+          margin: 1.75em 0 1em;
         }
 
         iframe {

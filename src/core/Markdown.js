@@ -13,7 +13,7 @@ const inlineRenderers = {
   root: 'span',
 };
 
-export default function Markdown({ children, isInline }) {
+export default function Markdown({ children = '', isInline }) {
   const source = stripIndent(children);
   return (
     <ReactMarkdown source={source} renderers={isInline ? inlineRenderers : renderers} />
@@ -23,9 +23,4 @@ export default function Markdown({ children, isInline }) {
 Markdown.propTypes = {
   children: PropTypes.string,
   isInline: PropTypes.bool,
-};
-
-Markdown.defaultProps = {
-  children: '',
-  isInline: false,
 };

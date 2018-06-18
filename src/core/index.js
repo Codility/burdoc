@@ -2,7 +2,6 @@ export { default as CodeExample } from 'core/CodeExample';
 export { default as formatPropOptions } from 'core/formatPropOptions';
 export { default as Iterator } from 'core/Iterator';
 export { default as Markdown } from 'core/Markdown';
-export { default as Prop } from 'core/Prop';
 export {
   default as RandomNumberGenerator,
 } from 'core/RandomNumberGenerator';

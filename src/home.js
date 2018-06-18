@@ -7,6 +7,7 @@ import {
   Setter,
   Toggler,
 } from 'core';
+import { Fragment } from 'react';
 
 function* counter() {
   let count = 0;
@@ -95,10 +96,14 @@ export default section()
       obtain the iterable (comes in handy for demoing with generators).
     `,
     <CodeExample imports="import { Iterator } from 'burdoc';">
-      <Iterator iterable={[0, 1, 2]}>{value => <div>Current value: {value}</div>}</Iterator>
-      <Iterator iterable={counter} timeout={500}>
-        {value => <div>Infinite counter: {value}</div>}
-      </Iterator>
+      <p>
+        <Iterator iterable={[0, 1, 2]}>{value => <Fragment>Current value: {value}</Fragment>}</Iterator>
+      </p>
+      <p>
+        <Iterator iterable={counter} timeout={500}>
+          {value => <Fragment>Infinite counter: {value}</Fragment>}
+        </Iterator>
+      </p>
     </CodeExample>,
   )
   .example(
@@ -106,7 +111,7 @@ export default section()
     'Can be used for demoing the behavior of a component when transitioning state between random values in a given range.',
     <CodeExample imports="import { RandomNumberGenerator } from 'burdoc';">
       <RandomNumberGenerator min={1} max={1.5}>
-        {value => <div>Current value: {value}</div>}
+        {value => <Fragment>Current value: {value}</Fragment>}
       </RandomNumberGenerator>
     </CodeExample>,
   )
@@ -125,14 +130,14 @@ export default section()
     <CodeExample imports="import { Setter } from 'burdoc';">
       <Setter setBar="bar">
         {({ setBar, state }) => (
-          <div>
+          <Fragment>
+            <p>Current state: {JSON.stringify(state)}</p>
             <p>
               <button onClick={() => setBar('first')}>First</button>
               <button onClick={() => setBar('second')}>Second</button>
               <button onClick={() => setBar()}>Reset</button>
             </p>
-            <p>Current state: {JSON.stringify(state)}</p>
-          </div>
+          </Fragment>
         )}
       </Setter>
     </CodeExample>,
@@ -146,7 +151,7 @@ export default section()
     <CodeExample imports="import { Resetter, Setter } from 'burdoc';">
       <Resetter>
         <Iterator iterable={counter} timeout={500}>
-          {value => <div>Current value: {value}</div>}
+          {value => <Fragment>Current value: {value}</Fragment>}
         </Iterator>
       </Resetter>
     </CodeExample>,
