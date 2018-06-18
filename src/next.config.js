@@ -15,10 +15,6 @@ function addVendorDependencies(entries) {
   return update(entries, {
     'main.js': {
       $push: [
-        'classnames',
-        'color',
-        'popper.js',
-        'styled-components',
       ],
     },
   });
@@ -40,10 +36,6 @@ module.exports = {
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
         rule.include.push(resolve('.'));
-
-        if (get(rule, 'use.options.cacheDirectory')) {
-          rule.use.options.cacheDirectory = false;
-        }
       }
     });
 
