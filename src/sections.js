@@ -21,11 +21,10 @@ function getCategoryFromPath(path) {
 }
 
 function getPathnameFromPath(path) {
-  const normalizedPath = normalizePath(path)
+  return normalizePath(path)
     .replace(/^\./, '')
     .replace('/index', '')
     .replace('.docs.js', '');
-  return `/docs${normalizedPath}`;
 }
 
 function getHomeSection() {

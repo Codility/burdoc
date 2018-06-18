@@ -12,6 +12,7 @@ const next = require('next');
 
 const serveRootFiles = require('./serveRootFiles');
 
+const internalPrefixes = ['/_next/*', '/static/*'];
 const port = process.env.SERVER_PORT || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({
@@ -24,14 +25,14 @@ app.prepare().then(() => {
   const server = new Koa();
   const router = new Router();
 
-  router.get('/docs/*', async ctx => {
-    const pathname = parse(ctx.url).pathname;
-    await app.render(ctx.req, ctx.res, '/', { pathname });
+  router.get(internalPrefixes, async ctx => {
+    await handle(ctx.req, ctx.res);
     ctx.respond = false;
   });
 
   router.get('*', async ctx => {
-    await handle(ctx.req, ctx.res);
+    const { pathname } = parse(ctx.url);
+    await app.render(ctx.req, ctx.res, '/', { pathname });
     ctx.respond = false;
   });
 
