@@ -12,7 +12,7 @@ export default [
   input,
   output: {
     file: input.replace('src', 'lib'),
-    format: 'cjs',
+    format: input.includes('pages') ? 'es' : 'cjs',
   },
   plugins: [
     resolve(),
