@@ -21,21 +21,14 @@ function* counter() {
 export default section()
   .description(
     `
-      Welcome to the Pattern Library, the home of various components used in the Codility app!
-
-      The documentation is kept up-to-date and is mostly based on examples of usage.
-
-      The Pattern Library is used by designers and developers alike.
+      Welcome to Burdoc, a tool for documenting React components (and not only)!
 
       ## Getting Started
 
       Documentation files are kept close to the described components and use the \`.docs.js\` extension.
       The documentation is automatically reloading when the source files are changed.
 
-      *Note: All files are discovered during the start-up of the Pattern Library, so remember to restart after adding a new documentation file!*
-
       The backbones of the new documentation file are the \`section\` function and the \`CodeExample\` component.
-      You can get them for free after running the \`yarn new-component\` command!
 
       The \`CodeExample\` component is special, because during compilation time (Babel) it receives its own source;
       that's why we are able to show components alongside the code that "makes" them.
@@ -44,7 +37,7 @@ export default section()
 
       \`\`\`
       // Import your component
-      import MyComponent from 'pattern-library/components/MyComponent';
+      import MyComponent from 'components/MyComponent';
 
       // And the helpers
       import { CodeExample, section } from 'burdoc';
