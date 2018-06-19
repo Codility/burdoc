@@ -1,21 +1,27 @@
 {
   "name": "burdoc",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "lib/core",
   "license": "MIT",
   "private": true,
+  "files": [
+    "bin",
+    "lib"
+  ],
   "bin": {
     "burdoc": "bin/server",
     "burdoc-build": "bin/build"
   },
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.51",
+    "@babel/runtime": "7.0.0-beta.51",
     "babel-plugin-module-resolver": "3.1.1",
     "codemirror": "5.38.0",
     "common-tags": "1.8.0",
     "immutability-helper": "2.7.1",
     "koa": "2.5.1",
     "koa-router": "7.4.0",
+    "lodash": "4.17.10",
     "mime-types": "2.1.18",
     "next": "6.0.4-canary.8",
     "prop-types": "15.6.1",
@@ -23,5 +29,13 @@
     "react-display-name": "0.2.4",
     "react-dom": "16.4.1",
     "react-markdown": "3.3.3"
+  },
+  "devDependencies": {
+    "rollup": "0.60.7",
+    "rollup-plugin-babel": "4.0.0-beta.5",
+    "rollup-plugin-node-resolve": "3.3.0"
+  },
+  "scripts": {
+    "build": "rollup -c"
   }
 }

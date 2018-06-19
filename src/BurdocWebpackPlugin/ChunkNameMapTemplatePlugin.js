@@ -1,7 +1,5 @@
-'use strict';
-
-const { flatten, fromPairs } = require('lodash');
-const { ConcatSource } = require('webpack-sources');
+import { flatten, fromPairs } from 'lodash';
+import { ConcatSource } from 'webpack-sources';
 
 const marker = JSON.stringify('|');
 
@@ -42,7 +40,7 @@ module.exports = chunkNameMapWebpackAsyncContext;
 `;
 }
 
-module.exports = class ChunkNameMapTemplatePlugin {
+export default class ChunkNameMapTemplatePlugin {
   apply(moduleTemplate) {
     moduleTemplate.plugin('module', (source, module) => {
       if (module.async !== 'lazy') {

@@ -6,6 +6,6 @@ const { join } = require('path');
 const { default: build } = require('next/dist/build');
 const { printAndExit } = require('next/dist/lib/utils');
 
-build(join(__dirname, '../src')).catch(err => {
+build(join(__dirname, '../lib')).catch(err => {
   printAndExit(err);
 });

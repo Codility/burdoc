@@ -1,13 +1,9 @@
-export const red600 = '#e53935';
 export const red900 = '#b71c1c';
 export const blue600 = '#1e88e5';
 export const lightBlue400 = '#29b6f6';
-export const green500 = '#4caf50';
 export const yellow700 = '#fbc02d';
 export const grey50 = '#fafafa';
 export const grey100 = '#f5f5f5';
 export const grey300 = '#e0e0e0';
-export const grey400 = '#bdbdbd';
-export const grey500 = '#9e9e9e';
 export const grey900 = '#212121';
 export const white = '#ffffff';

@@ -2,20 +2,19 @@
   MIT License http://www.opensource.org/licenses/mit-license.php
   Author Tobias Koppers @sokra
 */
-'use strict';
 
-const { createHash } = require('crypto');
+import { createHash } from 'crypto';
 
-const ContextDependencyHelpers = require('webpack/lib/dependencies/ContextDependencyHelpers');
-const ImportDependenciesBlock = require('webpack/lib/dependencies/ImportDependenciesBlock');
-const ImportEagerContextDependency = require('webpack/lib/dependencies/ImportEagerContextDependency');
-const ImportEagerDependency = require('webpack/lib/dependencies/ImportEagerDependency');
-const ImportLazyContextDependency = require('webpack/lib/dependencies/ImportLazyContextDependency');
-const ImportLazyOnceContextDependency = require('webpack/lib/dependencies/ImportLazyOnceContextDependency');
-const ImportParserPlugin = require('webpack/lib/dependencies/ImportParserPlugin');
-const ImportWeakContextDependency = require('webpack/lib/dependencies/ImportWeakContextDependency');
-const ImportWeakDependency = require('webpack/lib/dependencies/ImportWeakDependency');
-const UnsupportedFeatureWarning = require('webpack/lib/UnsupportedFeatureWarning');
+import ContextDependencyHelpers from 'webpack/lib/dependencies/ContextDependencyHelpers';
+import ImportDependenciesBlock from 'webpack/lib/dependencies/ImportDependenciesBlock';
+import ImportEagerContextDependency from 'webpack/lib/dependencies/ImportEagerContextDependency';
+import ImportEagerDependency from 'webpack/lib/dependencies/ImportEagerDependency';
+import ImportLazyContextDependency from 'webpack/lib/dependencies/ImportLazyContextDependency';
+import ImportLazyOnceContextDependency from 'webpack/lib/dependencies/ImportLazyOnceContextDependency';
+import ImportParserPlugin from 'webpack/lib/dependencies/ImportParserPlugin';
+import ImportWeakContextDependency from 'webpack/lib/dependencies/ImportWeakContextDependency';
+import ImportWeakDependency from 'webpack/lib/dependencies/ImportWeakDependency';
+import UnsupportedFeatureWarning from 'webpack/lib/UnsupportedFeatureWarning';
 
 function getHashForResource(parser) {
   return createHash('md5').update(parser.state.module.resource).digest('hex').slice(0, 20);
@@ -110,6 +109,6 @@ function apply(parser) {
   });
 }
 
-module.exports = function patchImportParserPlugin() {
+export default function patchImportParserPlugin() {
   ImportParserPlugin.prototype.apply = apply;
 }

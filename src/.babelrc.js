@@ -6,13 +6,20 @@ const handleImportsPlugin = require('next/dist/build/babel/plugins/handle-import
 module.exports = api => {
   api.cache.never();
 
-  const { presets: nextPresets, plugins: nextPlugins } = nextBabel(api);
+  const { presets: nextPresets, plugins: nextPlugins } = nextBabel(api, {
+    'styled-jsx': {
+      optimizeForSpeed: true,
+      sourceMaps: false,
+      vendorPrefixes: true,
+    },
+  });
+
   return {
     presets: nextPresets,
     plugins: [
-       '@babel/plugin-syntax-dynamic-import',
+      require('@babel/plugin-syntax-dynamic-import'),
       ...nextPlugins.filter(plugin => ![handleImportsPlugin].includes(plugin)),
-      ['module-resolver', { root: __dirname }],
+      [require('babel-plugin-module-resolver'), { root: __dirname }],
       require('./utils/plugins/code-example'),
     ],
   };

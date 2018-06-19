@@ -1,11 +1,9 @@
-'use strict';
+import { relative, resolve } from 'path';
 
-const { relative, resolve } = require('path');
+import update from 'immutability-helper';
+import { get } from 'lodash';
 
-const update = require('immutability-helper');
-const { get } = require('lodash');
-
-const BurdocWebpackPlugin = require('./BurdocWebpackPlugin');
+import BurdocWebpackPlugin from './BurdocWebpackPlugin';
 
 function addVendorDependencies(entries) {
   if (!entries.hasOwnProperty('main.js')) {
@@ -24,7 +22,7 @@ function testNormalizedPath(regExp, path) {
   return regExp.test(path.replace(/\\/g, '/'));
 }
 
-module.exports = {
+export default {
   distDir: relative(__dirname, resolve('.burdoc')),
 
   webpack(config, { isServer }) {

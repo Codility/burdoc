@@ -1,7 +1,4 @@
-'use strict';
-
-const { Template: ImportDependencyTemplate } = require('webpack/lib/dependencies/ImportDependency');
-const webpackMissingPromiseModule = require('webpack/lib/dependencies/WebpackMissingModule').promise;
+import { Template as ImportDependencyTemplate } from 'webpack/lib/dependencies/ImportDependency';
 
 function augumentContent(content, dep) {
   if (!dep.block.chunkName.startsWith('chunks/')) {
@@ -21,6 +18,6 @@ function getGetContent(prevGetContent) {
   }
 }
 
-module.exports = function patchImportDependencyTemplate() {
+export default function patchImportDependencyTemplate() {
   ImportDependencyTemplate.prototype.getContent = getGetContent(ImportDependencyTemplate.prototype.getContent);
-};
+}
