@@ -1,6 +1,6 @@
 {
   "name": "burdoc",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "main": "lib/core",
   "license": "MIT",
   "files": [
