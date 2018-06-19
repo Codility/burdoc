@@ -4,6 +4,7 @@
   "main": "lib/core",
   "license": "MIT",
   "files": [
+    "babel.js",
     "bin",
     "lib"
   ],

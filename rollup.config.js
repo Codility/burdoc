@@ -4,10 +4,12 @@ import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default [
-  './src/pages/_document.js',
-  './src/pages/index.js',
+  './src/.babelrc.js',
   './src/core/index.js',
   './src/next.config.js',
+  './src/pages/_document.js',
+  './src/pages/index.js',
+  './src/utils/plugins/code-example.js',
 ].map(input => ({
   input,
   output: {
