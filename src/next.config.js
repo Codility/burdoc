@@ -20,10 +20,23 @@ function addVendorDependencies(entries) {
   });
 }
 
+function testNormalizedPath(regExp, path) {
+  return regExp.test(path.replace(/\\/g, '/'));
+}
+
 module.exports = {
   distDir: relative(__dirname, resolve('.burdoc')),
 
   webpack(config, { isServer }) {
+    config.externals = config.externals.map(prevExternal =>
+      (context, request, callback) => {
+        if (testNormalizedPath(/node_modules\/burdoc/, context) && request.startsWith('.')) {
+          return callback();
+        }
+        return prevExternal(context, request, callback);
+      },
+    );
+
     const prevEntry = config.entry;
     config.entry = async () => {
       let entries = await prevEntry();
@@ -36,6 +49,10 @@ module.exports = {
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
         rule.include.push(resolve('.'));
+        rule.exclude = path => (
+          testNormalizedPath(/node_modules/, path) &&
+          !testNormalizedPath(/node_modules\/burdoc\/src/, path)
+        );
       }
     });
 
