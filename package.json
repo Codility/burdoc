@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "main": "lib/core",
   "license": "MIT",
-  "private": true,
   "files": [
     "bin",
     "lib"
