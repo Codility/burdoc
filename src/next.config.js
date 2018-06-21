@@ -1,21 +1,27 @@
 import { relative, resolve } from 'path';
 
+import cosmiconfig from 'cosmiconfig';
 import update from 'immutability-helper';
 import { get } from 'lodash';
 
 import BurdocWebpackPlugin from './BurdocWebpackPlugin';
+
+const cosmiconfigExplorer = cosmiconfig('burdoc');
+const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
+const burdocConfig = {
+  cacheDirectory: false,
+  distDir: relative(__dirname, resolve('.burdoc')),
+  docsRoot: resolve('.'),
+  vendorDependencies: [],
+  ...userConfig,
+};
 
 function addVendorDependencies(entries) {
   if (!entries.hasOwnProperty('main.js')) {
     return entries;
   }
 
-  return update(entries, {
-    'main.js': {
-      $push: [
-      ],
-    },
-  });
+  return update(entries, { 'main.js': { $push: burdocConfig.vendorDependencies } });
 }
 
 function testNormalizedPath(regExp, path) {
@@ -23,7 +29,7 @@ function testNormalizedPath(regExp, path) {
 }
 
 export default {
-  distDir: relative(__dirname, resolve('.burdoc')),
+  distDir: burdocConfig.distDir,
 
   webpack(config, { isServer }) {
     config.externals = config.externals.map(prevExternal =>
@@ -42,7 +48,7 @@ export default {
       return entries;
     };
 
-    config.resolve.alias.__cwd = process.cwd();
+    config.resolve.alias.__cwd = burdocConfig.docsRoot;
 
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
@@ -51,6 +57,7 @@ export default {
           testNormalizedPath(/node_modules/, path) &&
           !testNormalizedPath(/node_modules\/burdoc\/src/, path)
         );
+        rule.use.options.cacheDirectory = burdocConfig.cacheDirectory;
       }
     });
 

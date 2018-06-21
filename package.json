@@ -18,6 +18,7 @@
     "babel-plugin-module-resolver": "3.1.1",
     "codemirror": "5.38.0",
     "common-tags": "1.8.0",
+    "cosmiconfig": "5.0.5",
     "immutability-helper": "2.7.1",
     "koa": "2.5.1",
     "koa-router": "7.4.0",
