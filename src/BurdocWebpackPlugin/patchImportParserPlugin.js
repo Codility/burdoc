@@ -5,16 +5,18 @@
 
 import { createHash } from 'crypto';
 
-import ContextDependencyHelpers from 'webpack/lib/dependencies/ContextDependencyHelpers';
-import ImportDependenciesBlock from 'webpack/lib/dependencies/ImportDependenciesBlock';
-import ImportEagerContextDependency from 'webpack/lib/dependencies/ImportEagerContextDependency';
-import ImportEagerDependency from 'webpack/lib/dependencies/ImportEagerDependency';
-import ImportLazyContextDependency from 'webpack/lib/dependencies/ImportLazyContextDependency';
-import ImportLazyOnceContextDependency from 'webpack/lib/dependencies/ImportLazyOnceContextDependency';
-import ImportParserPlugin from 'webpack/lib/dependencies/ImportParserPlugin';
-import ImportWeakContextDependency from 'webpack/lib/dependencies/ImportWeakContextDependency';
-import ImportWeakDependency from 'webpack/lib/dependencies/ImportWeakDependency';
-import UnsupportedFeatureWarning from 'webpack/lib/UnsupportedFeatureWarning';
+import requireFromNextDeps from './requireFromNextDeps';
+
+const ContextDependencyHelpers = requireFromNextDeps('webpack/lib/dependencies/ContextDependencyHelpers');
+const ImportDependenciesBlock = requireFromNextDeps('webpack/lib/dependencies/ImportDependenciesBlock');
+const ImportEagerContextDependency = requireFromNextDeps('webpack/lib/dependencies/ImportEagerContextDependency');
+const ImportEagerDependency = requireFromNextDeps('webpack/lib/dependencies/ImportEagerDependency');
+const ImportLazyContextDependency = requireFromNextDeps('webpack/lib/dependencies/ImportLazyContextDependency');
+const ImportLazyOnceContextDependency = requireFromNextDeps('webpack/lib/dependencies/ImportLazyOnceContextDependency');
+const ImportParserPlugin = requireFromNextDeps('webpack/lib/dependencies/ImportParserPlugin');
+const ImportWeakContextDependency = requireFromNextDeps('webpack/lib/dependencies/ImportWeakContextDependency');
+const ImportWeakDependency = requireFromNextDeps('webpack/lib/dependencies/ImportWeakDependency');
+const UnsupportedFeatureWarning = requireFromNextDeps('webpack/lib/UnsupportedFeatureWarning');
 
 function getHashForResource(parser) {
   return createHash('md5').update(parser.state.module.resource).digest('hex').slice(0, 20);

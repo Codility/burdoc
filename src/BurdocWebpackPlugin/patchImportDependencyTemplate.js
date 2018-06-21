@@ -1,4 +1,6 @@
-import { Template as ImportDependencyTemplate } from 'webpack/lib/dependencies/ImportDependency';
+import requireFromNextDeps from './requireFromNextDeps';
+
+const { Template: ImportDependencyTemplate } = requireFromNextDeps('webpack/lib/dependencies/ImportDependency');
 
 function augumentContent(content, dep) {
   if (!dep.block.chunkName.startsWith('chunks/')) {
