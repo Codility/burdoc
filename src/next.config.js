@@ -53,10 +53,6 @@ export default {
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
         rule.include.push(resolve('.'));
-        rule.exclude = path => (
-          testNormalizedPath(/node_modules/, path) &&
-          !testNormalizedPath(/node_modules\/burdoc\/src/, path)
-        );
         rule.use.options.cacheDirectory = burdocConfig.cacheDirectory;
       }
     });
