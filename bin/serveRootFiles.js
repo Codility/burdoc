@@ -1,7 +1,7 @@
 'use strict';
 
 const { createReadStream, stat } = require('fs');
-const { normalize, resolve } = require('path');
+const { join, normalize, resolve } = require('path');
 const { PassThrough } = require('stream');
 
 const cosmiconfig = require('cosmiconfig');
