@@ -1,12 +1,18 @@
 'use strict';
 
 const { createReadStream, stat } = require('fs');
-const { join, normalize } = require('path');
+const { normalize, resolve } = require('path');
 const { PassThrough } = require('stream');
 
+const cosmiconfig = require('cosmiconfig');
 const mime = require('mime-types');
 
-const defaultRoot = join(process.cwd(), 'root');
+const cosmiconfigExplorer = cosmiconfig('burdoc');
+const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
+const burdocConfig = {
+  rootDir: resolve('./root'),
+  ...userConfig,
+};
 
 function isAcceptedError(error) {
   return ['EISDIR', 'ENOENT'].includes(error.code);
@@ -25,7 +31,7 @@ function promiseStat(path) {
 }
 
 module.exports = async function serveRootFiles(ctx, next) {
-  const destPath = normalize(join(defaultRoot, ctx.path));
+  const destPath = normalize(join(burdocConfig.rootDir, ctx.path));
   try {
     const stats = await promiseStat(destPath);
     if (stats.isDirectory()) {
