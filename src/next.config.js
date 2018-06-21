@@ -9,9 +9,9 @@ import BurdocWebpackPlugin from './BurdocWebpackPlugin';
 const cosmiconfigExplorer = cosmiconfig('burdoc');
 const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
 const burdocConfig = {
-  cacheDirectory: false,
-  distDir: relative(__dirname, resolve('.burdoc')),
-  docsDir: resolve('.'),
+  cachePath: false,
+  distPath: relative(__dirname, resolve('.burdoc')),
+  docsPath: resolve('.'),
   vendorDependencies: [],
   ...userConfig,
 };
@@ -29,7 +29,7 @@ function testNormalizedPath(regExp, path) {
 }
 
 export default {
-  distDir: burdocConfig.distDir,
+  distDir: burdocConfig.distPath,
 
   webpack(config, { isServer }) {
     config.externals = config.externals.map(prevExternal =>
@@ -48,12 +48,12 @@ export default {
       return entries;
     };
 
-    config.resolve.alias.__cwd = burdocConfig.docsDir;
+    config.resolve.alias.__cwd = burdocConfig.docsPath;
 
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
         rule.include.push(resolve('.'));
-        rule.use.options.cacheDirectory = burdocConfig.cacheDirectory;
+        rule.use.options.cacheDirectory = burdocConfig.cachePath;
       }
     });
 

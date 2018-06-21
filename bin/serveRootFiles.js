@@ -10,7 +10,7 @@ const mime = require('mime-types');
 const cosmiconfigExplorer = cosmiconfig('burdoc');
 const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
 const burdocConfig = {
-  rootDir: resolve('./root'),
+  rootPath: resolve('./root'),
   ...userConfig,
 };
 
@@ -31,7 +31,7 @@ function promiseStat(path) {
 }
 
 module.exports = async function serveRootFiles(ctx, next) {
-  const destPath = normalize(join(burdocConfig.rootDir, ctx.path));
+  const destPath = normalize(join(burdocConfig.rootPath, ctx.path));
   try {
     const stats = await promiseStat(destPath);
     if (stats.isDirectory()) {
