@@ -5,6 +5,7 @@ const { normalize, resolve } = require('path');
 const { PassThrough } = require('stream');
 
 const cosmiconfig = require('cosmiconfig');
+const { get } = require('lodash');
 const mime = require('mime-types');
 
 const cosmiconfigExplorer = cosmiconfig('burdoc');
