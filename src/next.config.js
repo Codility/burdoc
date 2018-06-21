@@ -11,7 +11,7 @@ const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
 const burdocConfig = {
   cacheDirectory: false,
   distDir: relative(__dirname, resolve('.burdoc')),
-  docsRoot: resolve('.'),
+  docsDir: resolve('.'),
   vendorDependencies: [],
   ...userConfig,
 };
@@ -48,7 +48,7 @@ export default {
       return entries;
     };
 
-    config.resolve.alias.__cwd = burdocConfig.docsRoot;
+    config.resolve.alias.__cwd = burdocConfig.docsDir;
 
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
