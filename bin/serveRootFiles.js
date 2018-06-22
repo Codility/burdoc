@@ -1,7 +1,7 @@
 'use strict';
 
 const { createReadStream, stat } = require('fs');
-const { join, normalize, resolve } = require('path');
+const { extname, join, normalize, resolve } = require('path');
 
 const cosmiconfig = require('cosmiconfig');
 const { get } = require('lodash');
@@ -38,7 +38,7 @@ module.exports = async function serveRootFiles(ctx, next) {
       await next();
     } else {
       ctx.body = createReadStream(destPath);
-      ctx.set('Content-Type', mime.contentType(destPath) || 'application/octet-stream')
+      ctx.set('Content-Type', mime.contentType(extname(destPath)) || 'application/octet-stream')
     }
   } catch (error) {
     if (isAcceptedError(error)) {
