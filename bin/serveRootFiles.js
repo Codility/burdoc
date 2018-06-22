@@ -2,7 +2,6 @@
 
 const { createReadStream, stat } = require('fs');
 const { join, normalize, resolve } = require('path');
-const { PassThrough } = require('stream');
 
 const cosmiconfig = require('cosmiconfig');
 const { get } = require('lodash');
