@@ -4,7 +4,7 @@ import cosmiconfig from 'cosmiconfig';
 import update from 'immutability-helper';
 import { get } from 'lodash';
 
-import BurdocWebpackPlugin from './BurdocWebpackPlugin';
+import BurdocWebpackPlugin from 'BurdocWebpackPlugin';
 
 const cosmiconfigExplorer = cosmiconfig('burdoc');
 const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');

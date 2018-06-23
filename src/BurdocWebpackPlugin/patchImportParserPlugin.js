@@ -5,7 +5,7 @@
 
 import { createHash } from 'crypto';
 
-import requireFromNextDeps from './requireFromNextDeps';
+import requireFromNextDeps from 'BurdocWebpackPlugin/requireFromNextDeps';
 
 const ContextDependencyHelpers = requireFromNextDeps('webpack/lib/dependencies/ContextDependencyHelpers');
 const ImportDependenciesBlock = requireFromNextDeps('webpack/lib/dependencies/ImportDependenciesBlock');

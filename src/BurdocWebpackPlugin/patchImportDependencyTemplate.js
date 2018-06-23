@@ -1,4 +1,4 @@
-import requireFromNextDeps from './requireFromNextDeps';
+import requireFromNextDeps from 'BurdocWebpackPlugin/requireFromNextDeps';
 
 const { Template: ImportDependencyTemplate } = requireFromNextDeps('webpack/lib/dependencies/ImportDependency');
 
