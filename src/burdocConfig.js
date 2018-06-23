@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { relative, resolve } = require('path');
 
 const cosmiconfig = require('cosmiconfig');
 const { get } = require('lodash');
