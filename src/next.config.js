@@ -1,20 +1,10 @@
 import { relative, resolve } from 'path';
 
-import cosmiconfig from 'cosmiconfig';
 import update from 'immutability-helper';
 import { get } from 'lodash';
 
 import BurdocWebpackPlugin from 'BurdocWebpackPlugin';
-
-const cosmiconfigExplorer = cosmiconfig('burdoc');
-const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
-const burdocConfig = {
-  cachePath: false,
-  distPath: relative(__dirname, resolve('.burdoc')),
-  docsPath: resolve('.'),
-  vendorDependencies: [],
-  ...userConfig,
-};
+import burdocConfig from 'burdocConfig';
 
 function addVendorDependencies(entries) {
   if (!entries.hasOwnProperty('main.js')) {

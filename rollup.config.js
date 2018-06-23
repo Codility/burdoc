@@ -5,6 +5,7 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default [
   './src/.babelrc.js',
+  './src/burdocConfig.js',
   './src/core/index.js',
   './src/next.config.js',
   './src/pages/_document.js',
@@ -25,6 +26,9 @@ export default [
     }),
   ],
   external(id, parent) {
+    if (id.includes('burdocConfig') && parent) {
+      return true;
+    }
     if (isAbsolute(id)) {
       return id.includes('node_modules');
     }

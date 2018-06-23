@@ -3,16 +3,9 @@
 const { createReadStream, stat } = require('fs');
 const { extname, join, normalize, resolve } = require('path');
 
-const cosmiconfig = require('cosmiconfig');
-const { get } = require('lodash');
 const mime = require('mime-types');
 
-const cosmiconfigExplorer = cosmiconfig('burdoc');
-const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
-const burdocConfig = {
-  rootPath: resolve('./root'),
-  ...userConfig,
-};
+const burdocConfig = require('../lib/burdocConfig');
 
 function isAcceptedError(error) {
   return ['EISDIR', 'ENOENT'].includes(error.code);
