@@ -3,8 +3,7 @@
   Author Tobias Koppers @sokra
 */
 
-import { createHash } from 'crypto';
-
+import { getChunkNameForContext, getChunkNameFromPath } from 'BurdocWebpackPlugin/chunkNameUtils';
 import requireFromNextDeps from 'BurdocWebpackPlugin/requireFromNextDeps';
 
 const ContextDependencyHelpers = requireFromNextDeps('webpack/lib/dependencies/ContextDependencyHelpers');
@@ -17,21 +16,6 @@ const ImportParserPlugin = requireFromNextDeps('webpack/lib/dependencies/ImportP
 const ImportWeakContextDependency = requireFromNextDeps('webpack/lib/dependencies/ImportWeakContextDependency');
 const ImportWeakDependency = requireFromNextDeps('webpack/lib/dependencies/ImportWeakDependency');
 const UnsupportedFeatureWarning = requireFromNextDeps('webpack/lib/UnsupportedFeatureWarning');
-
-function getHashForResource(parser) {
-  return createHash('md5').update(parser.state.module.resource).digest('hex').slice(0, 20);
-}
-
-function getChunkNameFromPath(parser, path) {
-  const cleanPath = path
-    .replace(/^__cwd\//, '')
-    .replace(/[^\w]/g, '-');
-  return `chunks/${cleanPath}-${getHashForResource(parser)}`;
-}
-
-function getChunkNameForContext(parser, ) {
-  return `chunks/[request]-${getHashForResource(parser)}`;
-}
 
 function apply(parser) {
   const options = this.options;
@@ -68,7 +52,7 @@ function apply(parser) {
       if (param.isString()) {
         chunkName = getChunkNameFromPath(parser, param.string);
       } else {
-        chunkName = getChunkNameForContext(parser, );
+        chunkName = getChunkNameForContext(parser);
       }
     }
 
