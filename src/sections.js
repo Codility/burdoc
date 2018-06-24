@@ -3,7 +3,6 @@ import dynamic, { SameLoopPromise } from 'next/dynamic';
 
 import getSectionConfig from 'getSectionConfig';
 import home from 'home';
-import marker from 'marker';
 
 function normalizePath(path) {
   return path.replace(/\\/g, '/').replace(/^\.\//, '');
@@ -35,6 +34,7 @@ function getHomeSection() {
 
 function getDocsSections() {
   const weakDocs = require.context('__cwd', true, /\.docs\.js$/, 'weak');
+  const lazyDocs = require.context('__cwd', true, /\.docs\.js$/, 'lazy');
   const sections = weakDocs.keys().map(path => {
     const sectionConfig = getSectionConfig(path);
     const normalizedPath = normalizePath(path);
@@ -50,7 +50,7 @@ function getDocsSections() {
           return resolve(weakModule);
         } catch (error) {}
 
-        import(`__cwd/${marker}${path}${marker}.docs.js`).then(resolve);
+        lazyDocs(path).then(resolve);
       })),
     };
   });
