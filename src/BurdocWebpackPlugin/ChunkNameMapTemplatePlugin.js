@@ -1,7 +1,7 @@
 import { flatten, fromPairs } from 'lodash';
 import { ConcatSource } from 'webpack-sources';
 
-const marker = JSON.stringify('|');
+import marker from 'marker';
 
 function getChunkNameMap(module) {
   return fromPairs(flatten(
@@ -26,10 +26,10 @@ function webpackContextResolveChunk(req) {
 function chunkNameMapWebpackAsyncContext(req) {
   var unmarkedReq;
 
-  if (req.indexOf(${marker}) === -1) {
+  if (req.indexOf("${marker}") === -1) {
     unmarkedReq = req;
   } else {
-    unmarkedReq = req.slice(req.indexOf(${marker}) + 1, req.lastIndexOf(${marker}));
+    unmarkedReq = req.slice(req.indexOf("${marker}") + 1, req.lastIndexOf("${marker}"));
   }
 
   return webpackAsyncContext(unmarkedReq).then(function(module) {

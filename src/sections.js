@@ -2,6 +2,7 @@ import { upperFirst } from 'lodash';
 import dynamic, { SameLoopPromise } from 'next/dynamic';
 
 import home from 'home';
+import marker from 'marker';
 
 function normalizePath(path) {
   return path.replace(/\\/g, '/');
@@ -49,8 +50,6 @@ function getDocsSections() {
         const weakModule = __webpack_require__(weakId);
         return resolve(weakModule);
       } catch (error) {}
-
-      const marker = '|';
 
       import(`__cwd/${marker}${path}${marker}.docs.js`).then(resolve);
     })),
