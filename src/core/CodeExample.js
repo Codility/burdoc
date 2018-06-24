@@ -35,7 +35,10 @@ export default function CodeExample({ backgroundColor = 'initial', children, cod
           padding: 16px;
         }
 
-        .viewport { position: relative }
+        .viewport {
+          overflow: auto;
+          position: relative;
+        }
       `}</style>
     </Fragment>
   );
