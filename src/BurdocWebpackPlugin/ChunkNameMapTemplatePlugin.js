@@ -24,11 +24,13 @@ function webpackContextResolveChunk(req) {
 };
 
 function chunkNameMapWebpackAsyncContext(req) {
-  if (req.indexOf(${marker}) === -1) {
-    throw new Error("Cannot handle unmarked module request '" + req + "'.");
-  }
+  var unmarkedReq;
 
-  var unmarkedReq = req.slice(req.indexOf(${marker}) + 1, req.lastIndexOf(${marker}));
+  if (req.indexOf(${marker}) === -1) {
+    unmarkedReq = req;
+  } else {
+    unmarkedReq = req.slice(req.indexOf(${marker}) + 1, req.lastIndexOf(${marker}));
+  }
 
   return webpackAsyncContext(unmarkedReq).then(function(module) {
     module.__webpackChunkName = webpackContextResolveChunk(unmarkedReq);
