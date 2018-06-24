@@ -3,7 +3,7 @@ import patchImportDependencyTemplate from 'BurdocWebpackPlugin/patchImportDepend
 import patchImportParserPlugin from 'BurdocWebpackPlugin/patchImportParserPlugin';
 import patchRequireContextDependencyParserPlugin from 'BurdocWebpackPlugin/patchRequireContextDependencyParserPlugin';
 
-export default class BurdocWepbackPlugin {
+export default class BurdocWebpackPlugin {
   apply(compiler) {
     /**
      * Since the export is being patched and Node's require.cache is not being cleared,
