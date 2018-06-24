@@ -1,31 +1,27 @@
-import { upperFirst } from 'lodash';
+import { get, last, upperFirst } from 'lodash';
 import dynamic, { SameLoopPromise } from 'next/dynamic';
 
+import getSectionConfig from 'getSectionConfig';
 import home from 'home';
 import marker from 'marker';
 
 function normalizePath(path) {
-  return path.replace(/\\/g, '/');
+  return path.replace(/\\/g, '/').replace(/^\.\//, '');
 }
 
-function getNameFromPath(path) {
+function getNameFromPath(normalizedPath) {
   return upperFirst(
-    normalizePath(path)
-      .replace('/index', '')
-      .replace('.docs.js', '')
-      .replace(/^([^/]*\/)*/, ''),
+    last(
+      normalizedPath
+        .replace(/\.docs\.js$/, '')
+        .replace(/\/index$/, '')
+        .split('/'),
+    ),
   );
 }
 
-function getCategoryFromPath(path) {
-  return upperFirst(normalizePath(path).split('/')[2]);
-}
-
-function getPathnameFromPath(path) {
-  return normalizePath(path)
-    .replace(/^\./, '')
-    .replace('/index', '')
-    .replace('.docs.js', '');
+function getCategoryFromPath(normalizedPath) {
+  return upperFirst(normalizedPath.split('/')[0]);
 }
 
 function getHomeSection() {
@@ -38,22 +34,26 @@ function getHomeSection() {
 }
 
 function getDocsSections() {
-  const weakDocs = require.context('__cwd', true, /\.docs\.js/, 'weak');
-  const sections = weakDocs.keys().map(path => ({
-    name: getNameFromPath(path),
-    category: getCategoryFromPath(path),
-    pathname: getPathnameFromPath(path),
-    Section: dynamic(new SameLoopPromise((resolve, reject) => {
-      const weakId = weakDocs.resolve(path);
+  const weakDocs = require.context('__cwd', true, /\.docs\.js$/, 'weak');
+  const sections = weakDocs.keys().map(path => {
+    const sectionConfig = getSectionConfig(path);
+    const normalizedPath = normalizePath(path);
+    return {
+      name: get(sectionConfig, 'name', getNameFromPath(normalizedPath)),
+      category: get(sectionConfig, 'category', getCategoryFromPath(normalizedPath)),
+      pathname: `/${normalizedPath}`,
+      Section: dynamic(new SameLoopPromise((resolve, reject) => {
+        const weakId = weakDocs.resolve(path);
 
-      try {
-        const weakModule = __webpack_require__(weakId);
-        return resolve(weakModule);
-      } catch (error) {}
+        try {
+          const weakModule = __webpack_require__(weakId);
+          return resolve(weakModule);
+        } catch (error) {}
 
-      import(`__cwd/${marker}${path}${marker}.docs.js`).then(resolve);
-    })),
-  }));
+        import(`__cwd/${marker}${path}${marker}.docs.js`).then(resolve);
+      })),
+    };
+  });
 
   return sections;
 }
