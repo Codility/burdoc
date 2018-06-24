@@ -1,6 +1,7 @@
 import ChunkNameMapTemplatePlugin from 'BurdocWebpackPlugin/ChunkNameMapTemplatePlugin';
 import patchImportDependencyTemplate from 'BurdocWebpackPlugin/patchImportDependencyTemplate';
 import patchImportParserPlugin from 'BurdocWebpackPlugin/patchImportParserPlugin';
+import patchRequireContextDependencyParserPlugin from 'BurdocWebpackPlugin/patchRequireContextDependencyParserPlugin';
 
 export default class BurdocWepbackPlugin {
   apply(compiler) {
@@ -10,6 +11,7 @@ export default class BurdocWepbackPlugin {
      */
     patchImportDependencyTemplate();
     patchImportParserPlugin();
+    patchRequireContextDependencyParserPlugin();
 
     compiler.plugin('compilation', (compilation, params) => {
       compilation.moduleTemplate.apply(new ChunkNameMapTemplatePlugin());
