@@ -7,7 +7,7 @@ const cosmiconfigExplorer = cosmiconfig('burdoc');
 const userConfig = get(cosmiconfigExplorer.searchSync(), 'config');
 
 export default {
-  cachePath: false,
+  cachePath: true,
   distPath: relative(__dirname, resolve('.burdoc')),
   docsPath: resolve('.'),
   rootPath: resolve('./root'),
