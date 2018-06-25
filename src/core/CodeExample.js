@@ -9,7 +9,7 @@ function normalizeSize(size) {
   return typeof size === 'number' ? `${size}px` : size;
 }
 
-export default function CodeExample({ backgroundColor = 'initial', children, code, height = 'auto', imports, width = 'auto' }) {
+export default function CodeExample({ backgroundColor = 'initial', children, code, height = 'auto', imports, overflow = 'visible', width = 'auto' }) {
   if (typeof children === 'string') {
     return (
       <Code imports={imports}>{stripIndent([children])}</Code>
@@ -19,7 +19,7 @@ export default function CodeExample({ backgroundColor = 'initial', children, cod
   return (
     <Fragment>
       <div className="viewport-wrapper">
-        <div className="viewport" style={{ height: normalizeSize(height), width: normalizeSize(width) }}>
+        <div className="viewport" style={{ height: normalizeSize(height), width: normalizeSize(width), overflow }}>
           {children}
         </div>
       </div>
@@ -35,10 +35,7 @@ export default function CodeExample({ backgroundColor = 'initial', children, cod
           padding: 16px;
         }
 
-        .viewport {
-          overflow: auto;
-          position: relative;
-        }
+        .viewport { position: relative }
       `}</style>
     </Fragment>
   );
@@ -50,5 +47,6 @@ CodeExample.propTypes = {
   code: PropTypes.string,
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   imports: PropTypes.string,
+  overflow: PropTypes.oneOf(['visible', 'hidden', 'scroll', 'auto']),
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
