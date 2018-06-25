@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./lib/.babelrc');
+module.exports = require('./lib/babel');

@@ -1,16 +1,16 @@
 import { isAbsolute } from 'path';
 
 import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default [
-  './src/.babelrc.js',
+  './src/babel.js',
   './src/core/index.js',
   './src/next.config.js',
   './src/pages/_document.js',
   './src/pages/index.js',
   './src/server/index.js',
-  './src/utils/plugins/code-example.js',
 ].map(input => ({
   input,
   output: {
@@ -19,6 +19,11 @@ export default [
   },
   plugins: [
     resolve(),
+    commonjs({
+      include: [
+        './src/babelPlugins/codeExample.js',
+      ],
+    }),
     babel({
       exclude: 'node_modules/**',
       externalHelpers: false,

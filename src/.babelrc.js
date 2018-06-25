@@ -20,7 +20,7 @@ module.exports = api => {
       require('@babel/plugin-syntax-dynamic-import'),
       ...nextPlugins.filter(plugin => ![handleImportsPlugin].includes(plugin)),
       [require('babel-plugin-module-resolver'), { root: __dirname }],
-      require('./utils/plugins/code-example'),
+      require('./babelPlugins/codeExample'),
     ],
   };
 };
