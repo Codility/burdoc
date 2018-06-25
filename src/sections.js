@@ -1,32 +1,12 @@
-import { get, last, upperFirst } from 'lodash';
+import { get } from 'lodash';
 import dynamic, { SameLoopPromise } from 'next/dynamic';
 
 import getSectionConfig from 'getSectionConfig';
 import home from 'home';
 
-function normalizePath(path) {
-  return path.replace(/\\/g, '/').replace(/^\.\//, '');
-}
-
-function getNameFromPath(normalizedPath) {
-  return upperFirst(
-    last(
-      normalizedPath
-        .replace(/\.docs\.js$/, '')
-        .replace(/\/index$/, '')
-        .split('/'),
-    ),
-  );
-}
-
-function getCategoryFromPath(normalizedPath) {
-  return upperFirst(normalizedPath.split('/')[0]);
-}
-
 function getHomeSection() {
   return {
     name: 'Home',
-    category: '',
     pathname: '/',
     Section: home,
   };
@@ -39,8 +19,8 @@ function getDocsSections() {
     const sectionConfig = getSectionConfig(path);
     const normalizedPath = normalizePath(path);
     return {
-      name: get(sectionConfig, 'name', getNameFromPath(normalizedPath)),
-      category: get(sectionConfig, 'category', getCategoryFromPath(normalizedPath)),
+      name: sectionConfig.name,
+      category: sectionConfig.category,
       pathname: `/${normalizedPath}`,
       Section: dynamic(new SameLoopPromise((resolve, reject) => {
         const weakId = weakDocs.resolve(path);
