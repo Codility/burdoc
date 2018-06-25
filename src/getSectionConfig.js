@@ -41,6 +41,6 @@ export default function getSectionConfig(path) {
     getDefaultConfig(path),
     ...sectionConfigs
       .filter(([key]) => path.startsWith(key))
-      .map(([, config]) => config),
+      .map(([, config]) => get(config, 'default', config)),
   );
 }
