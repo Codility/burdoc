@@ -5,11 +5,11 @@ import resolve from 'rollup-plugin-node-resolve';
 
 export default [
   './src/.babelrc.js',
-  './src/burdocConfig.js',
   './src/core/index.js',
   './src/next.config.js',
   './src/pages/_document.js',
   './src/pages/index.js',
+  './src/server/index.js',
   './src/utils/plugins/code-example.js',
 ].map(input => ({
   input,
@@ -26,9 +26,6 @@ export default [
     }),
   ],
   external(id, parent) {
-    if (id.includes('burdocConfig') && parent) {
-      return true;
-    }
     if (isAbsolute(id)) {
       return id.includes('node_modules');
     }

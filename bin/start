@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+'use strict';
+
+process.on('unhandledRejection', reason => {
+  console.error(reason.stack);
+  process.exit(1);
+});
+
+const server = require('../lib/server');
+
+const port = process.env.PORT || 3000;
+
+server({ port })

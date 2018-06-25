@@ -1,11 +1,9 @@
-'use strict';
+import { createReadStream, stat } from 'fs';
+import { extname, join, normalize, resolve } from 'path';
 
-const { createReadStream, stat } = require('fs');
-const { extname, join, normalize, resolve } = require('path');
+import mime from 'mime-types';
 
-const mime = require('mime-types');
-
-const burdocConfig = require('../lib/burdocConfig');
+import burdocConfig from 'burdocConfig';
 
 function isAcceptedError(error) {
   return ['EISDIR', 'ENOENT'].includes(error.code);
@@ -23,7 +21,7 @@ function promiseStat(path) {
   });
 }
 
-module.exports = async function serveRootFiles(ctx, next) {
+export default async function serveRootFiles(ctx, next) {
   const destPath = normalize(join(burdocConfig.rootPath, ctx.path));
   try {
     const stats = await promiseStat(destPath);

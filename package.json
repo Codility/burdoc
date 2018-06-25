@@ -9,8 +9,9 @@
     "lib"
   ],
   "bin": {
-    "burdoc": "bin/server",
-    "burdoc-build": "bin/build"
+    "burdoc": "bin/dev",
+    "burdoc-build": "bin/build",
+    "burdoc-start": "bin/start"
   },
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.0.0-beta.51",
