@@ -46,6 +46,7 @@
     "build:assets": "cpy \"**/*\" \"../../lib/static\" --cwd=src/static --parents",
     "build:scripts": "rollup -c",
     "clean": "rimraf lib",
-    "prebuild": "yarn clean"
+    "prebuild": "yarn clean",
+    "prepublish": "yarn build"
   }
 }
