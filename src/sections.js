@@ -6,8 +6,8 @@ import home from 'home';
 
 function getHomeSection() {
   return {
+    ...getSectionConfig('./'),
     name: 'Home',
-    pathname: '/',
     Section: home,
   };
 }
@@ -17,11 +17,8 @@ function getDocsSections() {
   const lazyDocs = require.context('__cwd', true, /\.docs\.js$/, 'lazy');
   const sections = weakDocs.keys().map(path => {
     const sectionConfig = getSectionConfig(path);
-    const normalizedPath = normalizePath(path);
     return {
-      name: sectionConfig.name,
-      category: sectionConfig.category,
-      pathname: `/${normalizedPath}`,
+      ...sectionConfig,
       Section: dynamic(new SameLoopPromise((resolve, reject) => {
         const weakId = weakDocs.resolve(path);
 

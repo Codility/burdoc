@@ -30,6 +30,9 @@ function getDefaultConfig(path) {
   return {
     name: getNameFromPath(normalizedPath),
     category: getCategoryFromPath(normalizedPath),
+    pathname: `/${normalizedPath}`,
+    title: 'Burdoc',
+    fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" />,
   }
 }
 

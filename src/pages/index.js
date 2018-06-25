@@ -14,7 +14,7 @@ export default function Index({ pathname }) {
       <BaseStyles />
 
       <Head>
-        <title>Burdoc</title>
+        <title>{activeSection.title}</title>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -22,6 +22,7 @@ export default function Index({ pathname }) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#F4AC3B" />
         <meta name="theme-color" content="#F4AC3B" />
         <link rel="stylesheet" href="/static/editor-theme.css" />
+        {activeSection.fonts}
       </Head>
 
       <div className="menu-column">

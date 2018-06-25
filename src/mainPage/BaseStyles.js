@@ -7,67 +7,61 @@ import { borderRadius } from 'constants/styles';
 
 export default function BaseStyles() {
   return (
-    <Fragment>
-      <Head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" />
-      </Head>
+    <style jsx global>{`
+      *, *:before, *:after {
+        box-sizing: border-box;
+      }
 
-      <style jsx global>{`
-        *, *:before, *:after {
-          box-sizing: border-box;
-        }
+      html {
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+      }
 
-        html {
-          font-family: Roboto, sans-serif;
-          font-size: 16px;
-        }
+      body {
+        margin: 0;
+      }
 
-        body {
-          margin: 0;
-        }
+      a {
+        color: ${blue600};
+        text-decoration: none;
+      }
 
-        a {
-          color: ${blue600};
-          text-decoration: none;
-        }
+      b { font-weight: 700 }
 
-        b { font-weight: 700 }
+      code {
+        background-color: ${grey100};
+        border-radius: ${borderRadius};
+        color: ${red900};
+        font-size: 0.875em;
+        padding: 2px 8px;
+      }
 
-        code {
-          background-color: ${grey100};
-          border-radius: ${borderRadius};
-          color: ${red900};
-          font-size: 0.875em;
-          padding: 2px 8px;
-        }
+      h1 {
+        font-size: 40px;
+        font-weight: 300;
+      }
 
-        h1 {
-          font-size: 40px;
-          font-weight: 300;
-        }
+      h2 {
+        font-size: 30px;
+        font-weight: 300;
+      }
 
-        h2 {
-          font-size: 30px;
-          font-weight: 300;
-        }
+      h3 {
+        font-size: 22px;
+        font-weight: 400;
+      }
 
-        h3 {
-          font-size: 22px;
-          font-weight: 400;
-        }
+      h1, h2, h3 {
+        margin: 1.75em 0 1em;
+      }
 
-        h1, h2, h3 {
-          margin: 1.75em 0 1em;
-        }
+      iframe {
+        border: none;
+      }
 
-        iframe {
-          border: none;
-        }
-
-        li {
-          margin: 16px 0;
-        }
-      `}</style>
-    </Fragment>
+      li {
+        margin: 16px 0;
+      }
+    `}</style>
   );
 }
