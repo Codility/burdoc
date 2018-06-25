@@ -1,4 +1,4 @@
-import { last, upperFirst } from 'lodash';
+import { get, last, upperFirst } from 'lodash';
 
 const sectionConfigFiles = require.context('__cwd', true, /\/burdoc\.section\.js$/);
 const keys = sectionConfigFiles.keys();
