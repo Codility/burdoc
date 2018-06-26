@@ -58,6 +58,12 @@ export default function BaseStyles() {
         margin: 16px 0;
       }
 
+      button, input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+      }
+
       /**
        * Based on the GitHub theme
        */
