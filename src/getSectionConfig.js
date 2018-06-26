@@ -1,4 +1,5 @@
 import { get, last, upperFirst } from 'lodash';
+import { Fragment } from 'react';
 
 const sectionConfigFiles = require.context('__cwd', true, /\/burdoc\.section\.js$/);
 const keys = sectionConfigFiles.keys();
@@ -32,7 +33,16 @@ function getDefaultConfig(path) {
     category: getCategoryFromPath(normalizedPath),
     pathname: `/${normalizedPath}`,
     title: 'Burdoc',
-    fonts: <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" />,
+    head: (
+      <Fragment>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" />
+        <style jsx global>{`
+          html {
+            font-family: Roboto, sans-serif;
+          }
+        `}</style>
+      </Fragment>
+    ),
   }
 }
 

@@ -1,7 +1,3 @@
-import Head from 'next/head';
-import { Fragment } from 'react';
-import css from 'styled-jsx/css';
-
 import { blue600, grey100, red900 } from 'constants/colors';
 import { borderRadius } from 'constants/styles';
 
@@ -13,7 +9,6 @@ export default function BaseStyles() {
       }
 
       html {
-        font-family: Roboto, sans-serif;
         font-size: 16px;
       }
 

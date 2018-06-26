@@ -12,16 +12,11 @@ export default function Index({ pathname }) {
   return (
     <div className="wrapper">
       <BaseStyles />
+      {activeSection.styles}
 
       <Head>
         <title>{activeSection.title}</title>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#F4AC3B" />
-        <meta name="theme-color" content="#F4AC3B" />
-        {activeSection.fonts}
+        {activeSection.head}
       </Head>
 
       <div className="menu-column">
