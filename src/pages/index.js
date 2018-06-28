@@ -4,11 +4,11 @@ import { Fragment } from 'react';
 
 import BaseStyles from 'mainPage/BaseStyles';
 import Menu from 'mainPage/Menu';
-import sections from 'sections';
+import sections, { defaultSectionConfig } from 'sections';
 import NotFound from 'NotFound';
 
 export default function Index({ pathname }) {
-  const activeSection = sections.find(doc => doc.pathname === pathname);
+  const activeSection = sections.find(doc => doc.pathname === pathname) || defaultSectionConfig;
   return (
     <div className="wrapper">
       <BaseStyles />
@@ -24,7 +24,7 @@ export default function Index({ pathname }) {
       </div>
 
       <div className="container-column">
-        {activeSection ? (
+        {activeSection.Section ? (
           <Fragment>
             <h1>{activeSection.name}</h1>
             <activeSection.Section />

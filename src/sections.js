@@ -4,9 +4,11 @@ import dynamic, { SameLoopPromise } from 'next/dynamic';
 import getSectionConfig from 'getSectionConfig';
 import home from 'home';
 
+export const defaultSectionConfig = getSectionConfig('./');
+
 function getHomeSection() {
   return {
-    ...getSectionConfig('./'),
+    ...defaultSectionConfig,
     name: 'Home',
     Section: home,
   };
