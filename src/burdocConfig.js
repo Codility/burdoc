@@ -12,5 +12,6 @@ export default {
   docsPath: resolve('.'),
   rootPath: resolve('./root'),
   vendorDependencies: [],
+  webpack: config => config,
   ...userConfig,
 };

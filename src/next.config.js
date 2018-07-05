@@ -21,7 +21,7 @@ function testNormalizedPath(regExp, path) {
 export default {
   distDir: burdocConfig.distPath,
 
-  webpack(config, { isServer }) {
+  webpack(config, options) {
     config.externals = config.externals.map(prevExternal =>
       (context, request, callback) => {
         if (testNormalizedPath(/node_modules\/burdoc/, context) && request.startsWith('.')) {
@@ -49,6 +49,6 @@ export default {
 
     config.plugins.push(new BurdocWebpackPlugin());
 
-    return config;
+    return burdocConfig.webpack(config, options);
   },
 };
