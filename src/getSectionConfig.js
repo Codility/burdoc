@@ -1,11 +1,7 @@
 import { get, last, upperFirst } from 'lodash';
 import { Fragment } from 'react';
 
-const sectionConfigFiles = require.context('__cwd', true, /\/burdoc\.section\.js$/);
-const keys = sectionConfigFiles.keys();
-const sectionConfigs = [...keys]
-  .sort((keyA, keyB) => (keyA.length - keyB.length) || keyA.localeCompare(keyB))
-  .map(key => [key.replace(/burdoc\.section\.js$/, ''), sectionConfigFiles(key)]);
+const sectionConfigs = BURDOC_SECTION_CONFIGS;
 
 function normalizePath(path) {
   return path.replace(/\\/g, '/').replace(/^\.\//, '');

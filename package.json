@@ -4,9 +4,10 @@
   "main": "lib/core",
   "license": "MIT",
   "files": [
-    "babel.js",
     "bin",
-    "lib"
+    "lib",
+    "babel.js",
+    "burdocImportsLoader.js"
   ],
   "bin": {
     "burdoc": "bin/dev",
@@ -23,9 +24,10 @@
     "immutability-helper": "2.7.1",
     "koa": "2.5.1",
     "koa-router": "7.4.0",
+    "loader-utils": "1.1.0",
     "lodash": "4.17.10",
     "mime-types": "2.1.18",
-    "next": "6.0.4-canary.8",
+    "next": "7.0.0-canary.0",
     "prop-types": "15.6.1",
     "react": "16.4.1",
     "react-display-name": "0.2.4",

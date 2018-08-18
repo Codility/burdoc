@@ -1,22 +1,26 @@
-import { relative, resolve } from 'path';
+import { join, resolve } from 'path';
 
 import update from 'immutability-helper';
 import { get } from 'lodash';
+import { CLIENT_STATIC_FILES_RUNTIME_MAIN } from 'next/constants';
 
-import BurdocWebpackPlugin from 'BurdocWebpackPlugin';
 import burdocConfig from 'burdocConfig';
 
 function addVendorDependencies(entries) {
-  if (!entries.hasOwnProperty('main.js')) {
+  if (!entries.hasOwnProperty(CLIENT_STATIC_FILES_RUNTIME_MAIN)) {
     return entries;
   }
 
-  return update(entries, { 'main.js': { $push: burdocConfig.vendorDependencies } });
+  return update(entries, {
+    [CLIENT_STATIC_FILES_RUNTIME_MAIN]: { $push: burdocConfig.vendorDependencies },
+  });
 }
 
 function testNormalizedPath(regExp, path) {
   return regExp.test(path.replace(/\\/g, '/'));
 }
+
+const pagesPath = join(__dirname, 'pages');
 
 export default {
   distDir: burdocConfig.distPath,
@@ -40,14 +44,34 @@ export default {
 
     config.resolve.alias.__cwd = burdocConfig.docsPath;
 
+    let babelRule;
+
     config.module.rules.forEach(rule => {
       if (get(rule, 'use.loader') === 'next-babel-loader') {
-        rule.include.push(resolve('.'));
+        babelRule = rule;
+        rule.include = [resolve()];
         rule.use.options.cacheDirectory = burdocConfig.cachePath;
       }
     });
 
-    config.plugins.push(new BurdocWebpackPlugin());
+    config.module.rules.push(update(babelRule, {
+      include: { $set: [pagesPath] },
+      exclude: { $set: [] },
+      use: {
+        options: {
+          cacheDirectory: { $set: false },
+        },
+      },
+    }));
+
+    config.module.rules.push({
+      test: /\.js$/,
+      include: [pagesPath],
+      loader: 'burdoc/burdocImportsLoader',
+      options: {
+        docsPath: burdocConfig.docsPath,
+      },
+    });
 
     return burdocConfig.webpack(config, options);
   },

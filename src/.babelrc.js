@@ -1,7 +1,6 @@
 'use strict';
 
 const nextBabel = require('next/babel');
-const handleImportsPlugin = require('next/dist/build/babel/plugins/handle-import');
 
 module.exports = api => {
   api.cache.never();
@@ -17,8 +16,7 @@ module.exports = api => {
   return {
     presets: nextPresets,
     plugins: [
-      require('@babel/plugin-syntax-dynamic-import'),
-      ...nextPlugins.filter(plugin => ![handleImportsPlugin].includes(plugin)),
+      ...nextPlugins,
       [require('babel-plugin-module-resolver'), { root: __dirname }],
       require('./babelPlugins/codeExample'),
     ],
