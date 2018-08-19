@@ -8,6 +8,11 @@ const loaderUtils = require('loader-utils');
 const docsImportsPlaceholder = 'BURDOC_DOCS_IMPORTS';
 const sectionConfigsPlaceholder = 'BURDOC_SECTION_CONFIGS';
 
+function getDirs(docsPath) {
+  console.log('> Gathering directories to watch for changes');
+  return glob.sync('**/', { cwd: docsPath });
+}
+
 function getDocsImportsCode(docsPath) {
   console.log('> Gathering the docs');
   const docs = glob.sync('**/*.docs.js', { cwd: docsPath, nodir: true });
@@ -55,18 +60,34 @@ function getDocsPath(context) {
   return loaderUtils.getOptions(context).docsPath;
 }
 
+function addContextDependencies(context, docsPath) {
+  context.addContextDependency(docsPath);
+
+  for (const dir of getDirs(docsPath)) {
+    context.addContextDependency(path.join(docsPath, dir));
+  }
+}
+
 module.exports = function burdocImportsLoader(originalContent) {
   let content = originalContent;
 
   if (content.includes(docsImportsPlaceholder)) {
+    const docsPath = getDocsPath(this);
     content = [
       "import dynamic from 'next/dynamic';",
-      content.replace(docsImportsPlaceholder, getDocsImportsCode(getDocsPath(this))),
+      content.replace(docsImportsPlaceholder, getDocsImportsCode(docsPath)),
     ].join('\n');
+
+    this.cacheable(false);
+    addContextDependencies(this, docsPath);
   }
 
   if (content.includes(sectionConfigsPlaceholder)) {
-    content = content.replace(sectionConfigsPlaceholder, getSectionConfigsCode(getDocsPath(this)));
+    const docsPath = getDocsPath(this);
+    content = content.replace(sectionConfigsPlaceholder, getSectionConfigsCode(docsPath));
+
+    this.cacheable(false);
+    addContextDependencies(this, docsPath);
   }
 
   return content;
