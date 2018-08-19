@@ -42,8 +42,6 @@ export default {
       return entries;
     };
 
-    config.resolve.alias.__cwd = burdocConfig.docsPath;
-
     let babelRule;
 
     config.module.rules.forEach(rule => {
