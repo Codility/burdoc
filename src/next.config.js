@@ -78,7 +78,7 @@ export default {
   exportPathMap: async (defaultPathMap) => {
     const docs = glob.sync('**/*.docs.js', { cwd: burdocConfig.docsPath, nodir: true });
     return {
-      '/': { page: '/' },
+      ...defaultPathMap,
       ...fromPairs(docs.map(doc => [`/${doc}.html`, { page: '/', query: { pathname: `/${doc}` } }])),
     };
   },
