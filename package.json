@@ -12,6 +12,7 @@
   "bin": {
     "burdoc": "bin/dev",
     "burdoc-build": "bin/build",
+    "burdoc-export": "bin/export",
     "burdoc-start": "bin/start"
   },
   "dependencies": {

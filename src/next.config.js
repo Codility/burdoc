@@ -1,7 +1,8 @@
 import { join, resolve } from 'path';
 
+import glob from 'glob';
 import update from 'immutability-helper';
-import { get } from 'lodash';
+import { fromPairs, get } from 'lodash';
 import { CLIENT_STATIC_FILES_RUNTIME_MAIN } from 'next/constants';
 
 import burdocConfig from 'burdocConfig';
@@ -72,5 +73,13 @@ export default {
     });
 
     return burdocConfig.webpack(config, options);
+  },
+
+  exportPathMap: async (defaultPathMap) => {
+    const docs = glob.sync('**/*.docs.js', { cwd: burdocConfig.docsPath, nodir: true });
+    return {
+      '/': { page: '/' },
+      ...fromPairs(docs.map(doc => [`/${doc}.html`, { page: '/', query: { pathname: `/${doc}` } }])),
+    };
   },
 };
