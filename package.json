@@ -4,10 +4,10 @@
   "main": "lib/core",
   "license": "MIT",
   "files": [
-    "bin",
-    "lib",
-    "babel.js",
-    "burdocImportsLoader.js"
+    "/bin/**",
+    "/lib/**",
+    "/babel.js",
+    "/burdocImportsLoader.js"
   ],
   "bin": {
     "burdoc": "bin/dev",
