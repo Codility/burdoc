@@ -29,16 +29,14 @@ function getDefaultConfig(path) {
     category: getCategoryFromPath(normalizedPath),
     pathname: `/${normalizedPath}`,
     title: 'Burdoc',
-    head: (
-      <Fragment>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" />
-        <style jsx global>{`
-          html {
-            font-family: Roboto, sans-serif;
-          }
-        `}</style>
-      </Fragment>
+    styles: (
+      <style jsx global>{`
+        html {
+          font-family: Roboto, sans-serif;
+        }
+      `}</style>
     ),
+    head: <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700" />,
   }
 }
 
