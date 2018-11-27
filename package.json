@@ -29,9 +29,7 @@
     "mime-types": "2.1.19",
     "next": "7.0.0-canary.0",
     "prop-types": "15.6.2",
-    "react": "16.4.2",
     "react-display-name": "0.2.4",
-    "react-dom": "16.4.2",
     "react-markdown": "3.4.1",
     "webpack-sources": "1.1.0"
   },
@@ -41,6 +39,10 @@
     "rollup-plugin-babel": "4.0.0-beta.5",
     "rollup-plugin-commonjs": "9.1.5",
     "rollup-plugin-node-resolve": "3.3.0"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "scripts": {
     "build": "rollup -c",
